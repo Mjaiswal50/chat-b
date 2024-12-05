@@ -21,11 +21,23 @@ app.use(cors({
 // }));
 // Serve static files (optional)
 app.use(express.static('public'));
-
+// let socketMap={};
+let socketArr=[];
 // Socket.io connection handler
 io.on('connection', (socket) => {
-  console.log('New user connected');
+  console.log('New user connected',socket.id);
 
+
+  if(!socketMap[socket.id]){
+   socketMap[socket.id]=socket.id;
+  }
+
+  if(!socketArr.includes(socket.id)){
+    socketArr.push(socket.id)
+  }
+  io.emit('newConnection',socketArr); // Broadcast message
+
+  
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg); // Broadcast message
   });
