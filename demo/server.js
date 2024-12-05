@@ -32,9 +32,7 @@ io.on('connection', (socket) => {
    socketMap[socket.id]=animeUsername();
   }
 
-  // if(!socketArr.includes(socket.id)){
-  //   socketArr.push(socket.id)
-  // }
+
   io.emit('newConnection',socketMap); // Broadcast message
 
   
