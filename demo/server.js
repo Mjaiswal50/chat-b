@@ -84,7 +84,6 @@ server.listen(3000, () => {
 // }
 
 function animeUsername() {
-  // Full list of characters from each series
   var title = [
   "Nightshade", "ViperStrike", "SteelFury", "ChaosReaper", "ShadowBlaze", "IronClad", "BlackoutX", "DeathPulse",
   "VenomFist", "RogueStorm", "SkyRider", "FireWolf", "BloodViper", "SteelTalon", "DarkKnight", "Thunderstrike",
