@@ -32,6 +32,29 @@ io.on('connection', (socket) => {
    socketMap[socket.id]=animeUsername();
   }
 
+  socket.on('private message', (data) => {
+    console.log("🚀 ~ socket.on ~ data:", data)
+    const { to, content } = data;
+    const recipientSocketId = to;
+    if (recipientSocketId) {
+      io.to(recipientSocketId).emit('private message', {
+        from: socket.id,
+        content: content,
+      });
+            console.log(`Private message from ${socket.id} to ${socketMap[to]}: ${content}`);
+
+    }
+  });
+
+  //   socket.on('private message', ({ to, message }) => {
+  //   const fromUser = socketMap[socket.id];
+  //   if (socketMap[to]) {
+  //     io.to(to).emit('private message', { from: fromUser, message });
+  //     console.log(`Private message from ${fromUser.username} to ${socketMap[to].username}: ${message}`);
+  //   } else {
+  //     socket.emit('error', { message: 'User not found or disconnected' });
+  //   }
+  // });
 
   io.emit('newConnection',socketMap); // Broadcast message
 
