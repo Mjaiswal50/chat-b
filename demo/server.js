@@ -22,7 +22,6 @@ app.use(cors({
 // Serve static files (optional)
 app.use(express.static('public'));
 let socketMap={};
-let socketArr=[];
 // Socket.io connection handler
 io.on('connection', (socket) => {
   console.log('New user connected',socket.id);
